@@ -52,8 +52,27 @@ if __name__ == '__main__':
     
     parser.add_argument("--downsample",
                         type=int,
-                        default=5)
+                        default=7)
 
     args = parser.parse_args()
 
-    bag_to_images(args.input_dir, args.output_dir, args.bag_file, args.image_topic, args.downsample)
+    bag_file_list = ["2017-11-24-22-34-08",
+                     "2017-11-24-22-37-05",
+                     "2017-11-24-22-40-00",
+                     "2017-11-24-22-43-08",
+                     "2017-11-24-22-45-53",
+                     "2017-11-24-22-49-02",
+                     "2017-11-24-22-35-13",
+                     "2017-11-24-22-37-47",
+                     "2017-11-24-22-41-00",
+                     "2017-11-24-22-44-15",
+                     "2017-11-24-22-46-38",
+                     "2017-11-24-22-50-29",
+                     "2017-11-24-22-36-23",
+                     "2017-11-24-22-38-39",
+                     "2017-11-24-22-42-05",
+                     "2017-11-24-22-45-00",
+                     "2017-11-24-22-47-50",
+                     "2017-11-24-22-51-38"]
+    for bag_file in bag_file_list:
+        bag_to_images(args.input_dir, args.output_dir, bag_file, args.image_topic, args.downsample)
