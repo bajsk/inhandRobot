@@ -8,7 +8,19 @@ import rosbag
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
+example_json = {}
+example_json["labels"] = ["background",
+                          "robothand",
+                          "inhandobject"]
+
+example_json["imageURLs"] = []
+example_json["annotationURLs"] = []
+image_url_path = "data/images/"
+annotation_url_path = "data/annotations/"
+
 def bag_to_images(input_dir, output_dir, bag_file, image_topic, downsample):
+    
+    global example_json
 
     bag_file_path = input_dir + bag_file + ".bag"
     print bag_file_path
@@ -20,7 +32,11 @@ def bag_to_images(input_dir, output_dir, bag_file, image_topic, downsample):
     for topic, msg, t in bag.read_messages(topics=[image_topic]):
         if count % downsample == 0:
             cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
-            cv2.imwrite(os.path.join(output_dir, bag_file +"_frame%06i.png" % img_num), cv_img)
+            img_file = bag_file +"_frame%06i.png" % img_num
+            example_json["imageURLs"].append(image_url_path + img_file)
+            example_json["annotationURLs"].append(annotation_url_path + img_file)
+            
+            cv2.imwrite(os.path.join(output_dir, img_file), cv_img)
             print "Wrote image %i" % img_num
             img_num += 1
             
@@ -76,3 +92,8 @@ if __name__ == '__main__':
                      "2017-11-24-22-51-38"]
     for bag_file in bag_file_list:
         bag_to_images(args.input_dir, args.output_dir, bag_file, args.image_topic, args.downsample)
+
+    import json
+
+    with open("example.json", "w") as f:
+        json.dump(example_json, f)
