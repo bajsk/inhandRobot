@@ -4,7 +4,7 @@
 import os
 import sys
 
-import cv2
+
 import numpy as np
 
 import torch
@@ -56,3 +56,6 @@ output_rgb = np.zeros(output.shape, dtype=np.uint8)
 
 cv2.LUT(output, colormap, output_rgb)
 cv2.imwrite(os.path.join(Config.image_path, "prediction.png"), output_rgb)        
+# cv2.imshow("prediction", output_rgb)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
