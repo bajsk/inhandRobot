@@ -17,13 +17,13 @@ class Config(object):
 
         self.LABELS_FILE_PATH = os.path.join(self.DATA_PATH, "all_label_list.txt")
 
-        self.CLASSES = ["background", "robot_hand", "inhand_object"]
+        self.CLASSES = ["background", "robot_hand", "inhand_obj"]
 
         self.NUM_CLASSES = len(self.CLASSES)
 
-        self.CLASS_IDX_TO_NAME = {0: "background", 1: "robot_hand", 2: "inhand_object"}
+        self.CLASS_IDX_TO_NAME = {0: "background", 1: "robot_hand", 2: "inhand_obj"}
 
-        self.CLASS_NAME_TO_IDX = {"background": 0, "robot_hand": 1, "inhand_object": 2}
+        self.CLASS_NAME_TO_IDX = {"background": 0, "robot_hand": 1, "inhand_obj": 2}
 
     def display(self):
         """
