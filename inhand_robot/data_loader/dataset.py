@@ -48,3 +48,11 @@ class HSRInhandObjectsDataset(BaseDataset):
     @property
     def legend(self):
         return self._legend
+
+    @property
+    def image_paths(self):
+        return self._image_paths
+
+    @property
+    def gt_paths(self):
+        return self._gt_paths
